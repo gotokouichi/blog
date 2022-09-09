@@ -1,10 +1,7 @@
 <?php
 session_start();
-$errors = $_SESSION['errors'] ?? []; //$_SESSION[errors]がnullだったら？？初期化する
-unset($_SESSION['errors']); //初期化する、（）の中消す　errorsのキーごと消す。
-//特定の要素を削除する
-//変数に入れたから、sessionから削除する
-//usernameからでボタン押下→その後usernameを入れた状態でemailが空だったばあい、ふたつのエラーがまた表示されちゃう
+$errors = $_SESSION['errors'] ?? [];
+unset($_SESSION['errors']); 
 ?>
 
 <!DOCTYPE html>
@@ -29,13 +26,13 @@ unset($_SESSION['errors']); //初期化する、（）の中消す　errorsの�
           <input placeholder="User name" type=“text” name="userName" required value="<?php if (
               isset($_SESSION['userName'])
           ) {
-              echo $_SESSION['userName']; //アカウント作成ボタン押下後、失敗した時に入力した項目をフォームに表示させる
+              echo $_SESSION['userName']; //アカウント作成ボタン押下後、登録失敗時にsignin.phpを表示→その時に入力していた項目をフォームに表示させる
           } ?>">
         </p>
         <p><input placeholder="Email" type=“mail” name="email" required value="<?php if (
             isset($_SESSION['email'])
         ) {
-            echo $_SESSION['email']; //ここの意味
+            echo $_SESSION['email'];
         } ?>"></p>
         <p><input placeholder="Password" type="password" name="password"></p>
         <p><input placeholder="Password確認" type="password" name="confirmPassword"></p>

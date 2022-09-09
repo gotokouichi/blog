@@ -11,7 +11,7 @@ $blogId = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 $commentSql = "DELETE FROM comments WHERE blog_id = :blog_id";
 $blogSql = "DELETE FROM blogs WHERE id = :id";
 try {
-  $statement = $pdo->prepare($commentSql);
+  $statement = $pdo->prepare($commentSql); //記事の削除時に該当記事のコメントも削除する
   $statement->bindValue(':blog_id', $blogId, PDO::PARAM_INT);
   $statement->execute();
 

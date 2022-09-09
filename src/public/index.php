@@ -5,9 +5,8 @@ if (!isset($_SESSION['id'])) {
   exit;
 }
 
-require_once('./utils/pdo.php'); //該当ファイルの内容が使いまわせる
+require_once('./utils/pdo.php'); 
 
-// 検索部分
 if (isset($_GET['order'])) {
   $direction = $_GET['order'];
 } else {
@@ -21,13 +20,13 @@ if (isset($_GET['search_query'])) {
   $title = '%%';
   $contents = '%%';
 }
+
 $query = "SELECT * FROM blogs WHERE title LIKE :title OR contents LIKE :contents ORDER BY id $direction";
 $stmt = $pdo->prepare($query);
 $stmt->bindValue(':title', $title, PDO::PARAM_STR);
 $stmt->bindValue(':contents', $contents, PDO::PARAM_STR);
 $stmt->execute();
 $posts = $stmt->fetchAll();
-
 ?>
 
 <!DOCTYPE html>

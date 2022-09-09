@@ -15,7 +15,7 @@ $statement->execute();
 
 $blogsInfoList = $statement->fetchAll(PDO::FETCH_ASSOC);
 $myBlogsInfoList = [];
-foreach ($blogsInfoList as $blogsInfo) {
+foreach ($blogsInfoList as $blogsInfo) { //ブログを全記事取得して、ログインユーザーの投稿した記事だけに絞り込む
   if ($_SESSION['id'] == $blogsInfo['user_id']) $myBlogsInfoList[] = $blogsInfo;
 }
 ?>
